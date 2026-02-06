@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart BAUST Cover Page Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="editor-container">
+    <h3 style="text-align: center; color: #006400; margin-top: 0;">BAUST Smart Cover Page</h3>
+    <div class="input-grid">
+        <div class="full-width">
+            <label>Select Report Type:</label>
+            <select id="reportType" onchange="handleTypeChange()">
+                <option value="ASSIGNMENT">ASSIGNMENT</option>
+                <option value="LAB REPORT">LAB REPORT</option>
+                <option value="PROJECT REPORT">PROJECT REPORT</option>
+            </select>
+        </div>
+
+        <div class="full-width"><label>Upload Logo:</label><input type="file" id="logoInput"></div>
+        
+        <div class="full-width">
+            <label>University Name:</label>
+            <input type="text" id="inUni" value="Bangladesh Army University of Science and Technology, Khulna" oninput="update()">
+        </div>
+
+        <div class="full-width">
+            <label>Department (Header):</label>
+            <select id="inDept" onchange="update()">
+                <option value="Department of Computer Science & Engineering">Department of Computer Science & Engineering</option>
+                <option value="Department of Electrical & Electronic Engineering">Department of Electrical & Electronic Engineering</option>
+                <option value="Department of Civil Engineering">Department of Civil Engineering</option>
+                <option value="Department of Mechanical Engineering">Department of Mechanical Engineering</option>
+                <option value="Department of Business Administration">Department of Business Administration</option>
+                <option value="Department of English">Department of English</option>
+            </select>
+        </div>
+        
+        <input type="text" id="inCName" placeholder="Course Name" oninput="update()">
+        <input type="text" id="inCCode" placeholder="Course Code" oninput="update()">
+        <input type="text" id="inANo" placeholder="Number (e.g. 01)" oninput="update()">
+        <input type="text" id="inAName" placeholder="Topic Name" oninput="update()">
+        <input type="text" id="inDate1" placeholder="Date of Assignment/Experiment" oninput="update()">
+        <input type="text" id="inDate2" placeholder="Date of Submission" oninput="update()">
+        
+        <div>
+            <label>Submitted By (Student):</label>
+            <input type="text" id="inSN" placeholder="Name" oninput="update()">
+            <input type="text" id="inSI" placeholder="ID" oninput="update()">
+            <select id="inSD" onchange="update()">
+                <option value="">Student Dept</option>
+                <option value="CSE">CSE</option><option value="EEE">EEE</option>
+                <option value="CE">CE</option><option value="ME">ME</option>
+                <option value="BBA">BBA</option><option value="English">English</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Submitted To (Teacher):</label>
+            <input type="text" id="inTN" placeholder="Teacher Name" oninput="update()">
+            <select id="inTDes" onchange="update()">
+                <option value="">Designation</option>
+                <option value="Lecturer">Lecturer</option>
+                <option value="Assistant Professor">Assistant Professor</option>
+                <option value="Associate Professor">Associate Professor</option>
+                <option value="Professor">Professor</option>
+            </select>
+            <select id="inTD" onchange="update()">
+                <option value="">Teacher Dept</option>
+                <option value="CSE">CSE</option><option value="EEE">EEE</option>
+                <option value="CE">CE</option><option value="ME">ME</option>
+                <option value="BBA">BBA</option><option value="English">English</option>
+            </select>
+        </div>
+    </div>
+    <button onclick="downloadPDF()">Download Single Page PDF</button>
+</div>
+
+<div id="cover-page">
+    <div class="header">
+        <div class="logo-box"><img id="preview-logo" src="" alt=" "></div>
+        <div class="uni-name" id="outUni"></div>
+        <div class="dept-name" id="outDept"></div>
+    </div>
+
+    <div class="report-title" id="outType">ASSIGNMENT</div>
+
+    <div class="info-section">
+        <div class="info-row"><div class="label-cell">Course Name</div><div class="dots-cell">:</div><div id="outCName"></div></div>
+        <div class="info-row"><div class="label-cell">Course Code</div><div class="dots-cell">:</div><div id="outCCode"></div></div>
+        <div class="info-row"><div class="label-cell" id="labelNo">Assignment no.</div><div class="dots-cell">:</div><div id="outANo"></div></div>
+        <div class="info-row"><div class="label-cell">Topic Name</div><div class="dots-cell">:</div><div id="outAName"></div></div>
+        <div style="height: 4mm;"></div>
+        <div class="info-row"><div class="label-cell" id="labelDate1">Date of Assignment</div><div class="dots-cell">:</div><div id="outDate1"></div></div>
+        <div class="info-row"><div class="label-cell">Date of Submission</div><div class="dots-cell">:</div><div id="outDate2"></div></div>
+    </div>
+
+    <div class="footer-area">
+        <div class="footer-labels"><span>Submitted By</span><span>Submitted To</span></div>
+        <div class="footer-table">
+            <div class="footer-col left-border">
+                Name : <span id="outSN"></span><br>
+                ID : <span id="outSI"></span><br>
+                Department of : <span id="outSD"></span>
+            </div>
+            <div class="footer-col">
+                Name : <span id="outTN"></span><br>
+                Designation : <span id="outTDes"></span><br>
+                Department of : <span id="outTD"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
